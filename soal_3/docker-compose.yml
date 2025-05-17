@@ -1,0 +1,23 @@
+
+services:
+  antink-server:
+    build: .
+    container_name: antink-server
+    privileged: true
+    volumes:
+      - ./host:/it24_host
+      - antink_mount:/antink_mount
+      - antink_logs:/var/log
+      - /etc/localtime:/etc/localtime:ro
+    command: ["/antink", "-f", "--", "/antink_mount"]
+
+  antink-logger:
+    image: alpine
+    container_name: antink-logger
+    volumes:
+      - antink_logs:/var/log
+    command: ["tail", "-f", "/var/log/it24.log"]
+
+volumes:
+  antink_mount:
+  antink_logs:
