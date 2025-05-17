@@ -1,5 +1,5 @@
 # Laporan Resmi Praktikum SISOP Modul 4
-## Anggota Kelompok
+## 👥 Anggota Kelompok
 
 | No | Nama                     | NRP         |
 |----|--------------------------|-------------|
@@ -8,46 +8,32 @@
 | 3  | Imam Mahmud Dalil Fauzan | 5027241100  |
 
 # SOAL 1
-Program ini otomatisi dalam proses dari download file ZIP berisi teks kode-kode heksadesimal yang merepresentasikan data gambar, lalu mengkonversi data itu jadi gambar asli (.png) dan disimpan hasilnya di folder khusus.
-jika ada data gambar tapi masih dalam bentuk tulisan (kode hex), nah program ini yang bakal merubah tulisan itu jadi file gambar yang bisa dibuka kayak biasa.
+## ✏️ Pembuat: Danuja Prasasta Bastu (5027241037)
 
-Kalau dijalankan, program ini akan:
+## 📂 Ringkasan
+Program ini otomatisi dalam proses dari download file ZIP berisi teks kode-kode heksadesimal yang merepresentasikan data gambar, lalu mengkonversi data itu jadi gambar asli (.png) dan disimpan hasilnya di folder khusus. jika ada data gambar tapi masih dalam bentuk tulisan (kode hex), nah program ini yang bakal merubah tulisan itu jadi file gambar yang bisa dibuka kayak biasa.
 
+## ⚙️ Saat di-Run
+Program ini akan:
 - Download file ZIP dari URL yang  dikasih.
-- Unzip file itu, isinya file teks (.txt) yang ada di folder anomali/.
+- meng-Unzip file itu, isinya file teks (.txt) yang ada di folder anomali/.
 - Cek semua file .txt di folder itu.
 - Baca tiap file .txt, yang isinya adalah data gambar dalam bentuk hex string.
 - Ubah hex string jadi data biner (yang bisa dimengerti oleh format gambar asli).
 - Simpan hasilnya sebagai file gambar .png di folder image/.
 - Tulis catatan (log) ke file conversion.log buat ngelacak file mana aja yang udah dikonversi.
 
-Berikut beberapa bagian penting dari kode ini:
-create_dir_if_not_exists()
-Cek apakah folder (misalnya image/) sudah ada atau belum. Kalau belum ada, bikin foldernya.
-
-get_timestamp() dan get_log_timestamp()
-mengambil waktu saat ini dan dijadikan string, buat nama file gambar & log yang unik (biar gak bentrok).
-
-download_file()
-Pake libcurl buat unduh file dari internet. File yang diunduh disimpan sebagai download.zip.
-
-unzip_file()
-Unzip file yang udah didownload tadi. Pake perintah unzip yang langsung dijalankan lewat system().
-
-hex_to_bin()
-mengubah string heksadesimal jadi array data biner (yang bisa disimpan jadi gambar).
-
-convert_hex_to_image()
-Gabungan dari hex_to_bin() dan penyimpanan ke file gambar. Jadi intinya: baca hex, ubah ke biner, simpan jadi .png.
-
-log_conversion()
-Catat konversi dari file .txt ke .png ke dalam file conversion.log.
-
-process_hex_files_in_dir()
-Bagian ini yang jalanin semua proses konversi untuk tiap file .txt dalam folder anomali/.
-
-main() — Titik Awal Program
-Fungsi main() menjalankan semua langkah utama:
+## 🧠 Beberapa bagian penting kode ini:
+- `create_dir_if_not_exists()` Cek apakah folder (misalnya image/) sudah ada atau belum. Kalau belum ada, bikin foldernya.
+- `get_timestamp() dan get_log_timestamp()` mengambil waktu saat ini dan dijadikan string, buat nama file gambar & log yang unik (biar gak bentrok).
+- `download_file()` Pake libcurl buat unduh file dari internet. File yang diunduh disimpan sebagai download.zip.
+- `unzip_file()` Unzip file yang udah didownload tadi. Pake perintah unzip yang langsung dijalankan lewat `system()`.
+- `hex_to_bin()` mengubah string heksadesimal jadi array data biner (yang bisa disimpan jadi gambar).
+- `convert_hex_to_image()` Gabungan dari `hex_to_bin()` dan penyimpanan ke file gambar. Jadi intinya: baca hex, ubah ke biner, simpan jadi .png.
+- `log_conversion()` Catat konversi dari file .txt ke .png ke dalam file conversion.log.
+- `process_hex_files_in_dir()` Bagian ini yang jalanin semua proses konversi untuk tiap file .txt dalam folder anomali/.
+- `main()` — Titik Awal Program
+Fungsi `main()` menjalankan semua langkah utama:
 Cek apakah URL udah dikasih sebagai argumen.
 Download file ZIP dari URL tersebut.
 Unzip file ZIP-nya.
@@ -56,21 +42,21 @@ Proses semua file .txt yang ada di folder anomali/.
 Hasil gambar disimpan di folder image/.
 Semua konversi dicatat di log.
 
-Contoh Cara Pakai Program Ini
-Misalnya dibrikan URL ZIP seperti ini:
-https://example.com/data.zip
-
-programnya dapat dijalankan seperti ini:
+## Cara Run Program Ini
+Misal diberikan URL ZIP: https://example.com/data.zip, jalankan seperti ini:
+```
 ./converter https://example.com/data.zip
-
-Setelah dijalankan:
-Folder image/ bakal berisi gambar-gambar hasil konversi.
-
-File conversion.log bakal berisi catatan kayak:
+```
+Setelah dijalankan, Folder image/ bakal berisi gambar-gambar hasil konversi.
+File `conversion.log` bakal berisi catatan:
+```
 [2025-05-17][10:15:22]: Successfully converted hexadecimal text image1.txt to image1_image_2025-05-17_10:15:22.png.
+```
 
 # SOAL 2
-📂 Baymax - FUSE Filesystem untuk File Virtual Berbasis Fragmen
+## ✏️ Pembuat: Imam Mahmud Dalil Fauzan (5027241100)
+
+## 📂 Baymax - FUSE Filesystem untuk File Virtual Berbasis Fragmen
 
 ## 📌 Deskripsi Program
 Baymax adalah penerapan filesystem berbasis FUSE yang memvirtualisasikan file Baymax.jpeg pecahan-pecahan file (fragmen) yang disimpan di direktori /relics. File Baymax.jpeg cuma muncul saat filesystem di-mount, dan seluruh operasi baca/tulis ke file ini akan dibagi menjadi fragmen-fragmen kecil berukuran 1024 byte.
@@ -78,7 +64,7 @@ Program ini juga mencatat seluruh aktivitas READ, WRITE, dan DELETE file ke dala
 
 ## ⚙️ Struktur Direktori
 ```
-├── baymax_fs.c         # File program utama
+├── baymax.c         # File program utama
 ├── relics/             # Folder berisi potongan-potongan fragmen file
 │   └── Baymax.jpeg.000
 │   └── Baymax.jpeg.001
@@ -142,67 +128,71 @@ Saat file dihapus (unlink):
 ```
 
 # SOAL 3
-Program ini adalah filesystem virtual menggunakan FUSE (Filesystem in Userspace), dijalankan di dalam container Docker. Tujuannya adalah untuk melakukan manipulasi file dan direktori dengan fitur keamanan tambahan:
--Mendeteksi file mencurigakan (berisi nafis atau kimcun)
--Enkripsi/Deskripsi file menggunakan ROT13
--Logging aktivitas filesystem
--Reverse nama file mencurigakan di readdir
+## ✏️ Pembuat: Tiara Putri Prasetya (5027241013)
 
-## Fungsi Utama pada antink.c
-1. void rot13(char *s)
--Fungsi ini mengenkripsi atau mendekripsi string menggunakan ROT13:
--ROT13 adalah teknik substitusi huruf: A <> N, B <> O, dst.
-2. int is_malicious(const char *name)
--Fungsi ini memeriksa apakah nama file mengandung kata nafis atau kimcun.
--readdir() = digunakan untuk membalik nama file mencurigakan.
--read() = digunakan untuk mencatat log jika file mencurigakan dibaca.
-3. void reverse_str(char *str)
--Fungsi ini untuk membalikan string secara manual.
--Contoh = nafis.csv menjadi vsc.sifan
-4. void log_event(const char *msg)
--Fungsi ini dipakai di semua operasi (getattr, readdir, open, read)
--Fungsi ini untuk mencatat aktivitas ke file log /var/log/it24.log dengan format:
+## 📂 Ringkasan
+Program ini adalah filesystem virtual menggunakan FUSE, dijalankan di dalam container Docker. Tujuannya untuk memanipulasi file dan direktori dengan fitur keamanan tambahan:
+- Mendeteksi file mencurigakan (berisi nafis atau kimcun)
+- Enkripsi/Deskripsi file menggunakan ROT13
+- Logging aktivitas filesystem
+- Reverse nama file mencurigakan di readdir
+
+## Fungsi Utama pada `antink.c`
+1. `void rot13(char *s)`
+- Fungsi ini mengenkripsi atau mendekripsi string menggunakan ROT13:
+- ROT13 adalah teknik substitusi huruf: A <> N, B <> O, dst.
+2. `int is_malicious(const char *name)`
+- Fungsi ini memeriksa apakah nama file mengandung kata nafis atau kimcun.
+- `readdir()` = digunakan untuk membalik nama file mencurigakan.
+- `read()` = digunakan untuk mencatat log jika file mencurigakan dibaca.
+3. `void reverse_str(char *str)`
+- Fungsi ini untuk membalikan string secara manual.
+- Contoh = nafis.csv menjadi vsc.sifan
+4. `void log_event(const char *msg)`
+- Fungsi ini dipakai di semua operasi (getattr, readdir, open, read)
+- Fungsi ini untuk mencatat aktivitas ke file log `/var/log/it24.log` dengan format:
+```
 [dd-mm-YYYY][HH:MM:SS] - <pesan>
+```
 
-## Fungsi Utama pada operasi FUSE
-1. do_getattr
+## 🧠 Fungsi Utama pada operasi FUSE
+1. `do_getattr`
 Dipanggil saat sistem ingin melihat atribut (ukuran, waktu akses) file. Yaitu dengan mengambil atribut file asli di /it24_host dan mencatat log [GETATTR] Path: ...
-2. do_readdir
+2. `do_readdir`
 Dipanggil saat direktori dibuka (misalnya saat ls).Yaitu dengan membaca semua file dari /it24_host dan jika ada file mencurigakan (mengandung nafis atau kimcun), nama file dibalik dan dicatat di log [READDIR] dan [REVERSED]
-3. do_open
+3. `do_open`
 Dipanggil saat file dibuka. Yaitu dengan membuka atribut file asli di /it24_host dan mencatat log [OPEN] File: ...
-4. do_read
+4. `do_read`
 Dipanggil saat isi file dibaca.
-Jika isi file mencurigakan
--Baca isi file secara manual (fopen)
--Tidak mengubah isinya, hanya log [READ MALICIOUS]
-Jika bukan mencurigakan
--Baca isi file
--Enkripsi hasil baca menggunakan ROT13
--Log [READ]
+Jika isi file mencurigakan:
+- Baca isi file secara manual (`fopen`)
+- Tidak mengubah isinya, hanya log [READ MALICIOUS]
+Jika bukan mencurigakan:
+- Baca isi file
+- Enkripsi hasil baca menggunakan ROT13
+- Log [READ]
 
-## Fungsi Utama pada Dockerfile & Docker-compose.yml
+## 🧠 Fungsi Utama pada Dockerfile & Docker-compose.yml
 ### - Dockerfile
 1. Build image berisi FUSE + kode antink:
 2. Gunakan ubuntu:latest
 3. Install dependensi FUSE dan gcc
-4. Copy antink.c dan compile
+4. Copy `antink.c` dan compile
 5. Jalankan dengan FUSE mount ke /antink_mount
-### - docker-compose.yml
+### - `docker-compose.yml`
 Terdiri dari dua container:
 1. antink-server
 Container utama yang menjalankan FUSE filesystem
 Mount direktori:
--./host → /it24_host (isi asli file)
--Volume untuk mount (/antink_mount)
--Volume untuk log
+- ./host → /it24_host (isi asli file)
+- Volume untuk mount (/antink_mount)
+- Volume untuk log
 Lalu, Jalankan FUSE filesystem di /antink_mount
 2. antink-logger
 -Container ringan (alpine)
 -Memantau log secara real time
 
-## CARA RUN
-
+## ⚙️ CARA RUN
 -Untuk menghentikan dan menghapus container lama
 `docker compose down`
 -Untuk Build ulang image
@@ -220,7 +210,7 @@ Lalu, Jalankan FUSE filesystem di /antink_mount
 - Untuk Melihat log aktivitas
 `docker exec antink-server cat /var/log/it24.log`
 
-## TESTING FILE
+## 📂 TESTING FILE
 ```
 echo "Isi file biasa" //text.txt
 echo "Nafis sedang mencuri data!"  //nafis.csv
