@@ -11,7 +11,7 @@
 #define LOG_FILE "conversion.log"
 #define IMAGE_DIR "image"
 
-void create_dir_if_not_exists(const c   har *dir)
+void create_dir_if_not_exists(const char *dir)
 {
     struct stat st = {0};
     if (stat(dir, &st) == -1)
@@ -127,7 +127,6 @@ int convert_hex_to_image(const char *input_filename, const char *output_filename
     unsigned char *bin_data = NULL;
     size_t bin_size = 0;
 
-    
     input = fopen(input_filename, "r");
     if (!input)
     {
@@ -230,7 +229,7 @@ void process_hex_files_in_dir(const char *dir_path)
             base_name[sizeof(base_name) - 1] = '\0';
             char *dot = strrchr(base_name, '.');
             if (dot)
-                *dot = '\0';
+                *dot = '\0'; 
 
             get_timestamp(timestamp);
 
